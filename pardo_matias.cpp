@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -22,12 +23,22 @@ void visualizza(prodotto x[],int d)
 		cout<<"\n il nome del prodotto e': "<<x[j].nome;
 	    cout<<"\n la categoria e': "<<x[j].categoria;
         cout<<"\n il prezzo e': "<<x[j].prezzo;
+        cout<<"\n";
 	}
 }
 
-void cerca(prodotto y,prodotto x[],int d)
+void cerca(string y,prodotto x[],int d)
 {
-	
+	for(int i = 0; i < d; i++)
+	{
+		if(x[i].nome==y)
+		{
+			cout<<"il prodotto e' presente nella lista \n";
+			cout<<"la sua categoria e' "<<x[i].categoria<<"\n";
+			cout<<"il prezzo e' "<<x[i].prezzo<<"\n";			
+			break;
+		}
+	}
 }
 
 bool cancella(prodotto y,prodotto x[],int d)
@@ -42,8 +53,9 @@ void modifica(prodotto y,prodotto x[],int d)
 
 int main(int argc, char** argv) {
 	
-	prodotto supermercato[100];
-    int v, i = 0;
+	prodotto supermercato[100],c;
+    int v, d = 0;
+    string al;
 	do
 	{
 		cout<<"\n1: aggiungi \n";
@@ -58,23 +70,23 @@ int main(int argc, char** argv) {
 		{
 			case 1:
 				cout<<"\n inserisci il nome del prodotto: ";
-	            cin>>supermercato[i].nome;
+	            cin>>c.nome;
 	            cout<<"\n inserisci la categoria: ";
-	            cin>>supermercato[i].categoria;
+	            cin>>c.categoria;
                 cout<<"\n inserisci il prezzo: ";
-                cin>>supermercato[i].prezzo;
-				aggiungi(supermercato[i],supermercato,i);
+                cin>>c.prezzo;
+				aggiungi(c,supermercato,d);
 				break;
 				
 			case 2:
 			 	
-			    visualizza(supermercato,i);
+			    visualizza(supermercato,d);
 			    break;
 			    
 			case 3:
 			    cout<<"cosa vuoi cercare?\n";
-			    cin>>
-			   // cerca();
+			    cin>>al;
+			    cerca(al,supermercato,d);
 			    break;
 			    
 			case 4:
