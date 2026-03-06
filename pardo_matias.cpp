@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -16,15 +15,14 @@ void aggiungi(prodotto y,prodotto x[],int &d)
 	d++;
 }
 
-void visualizza(prodotto x[],int d)
-{
-	for(int j = 0; j < d; j++)
-	{
-		cout<<"\n il nome del prodotto e': "<<x[j].nome;
-	    cout<<"\n la categoria e': "<<x[j].categoria;
-        cout<<"\n il prezzo e': "<<x[j].prezzo;
-        cout<<"\n";
+string visualizza(prodotto ele[], int d){
+	string s;
+	for(int i=0;i<d;i++){
+		s+=ele[i].nome+"\t";
+		s+=ele[i].categoria+"\t";
+		s+=to_string(ele[i].prezzo)+"\n";
 	}
+	return s;
 }
 
 void cerca(string y,prodotto x[],int d)
@@ -41,8 +39,23 @@ void cerca(string y,prodotto x[],int d)
 	}
 }
 
-bool cancella(prodotto y,prodotto x[],int d)
-{
+bool cancella(string y,prodotto x[],int d)
+{	
+	for(int i = 0; i < d; i++)
+	{
+		
+		if(y==x[i].nome)
+		{
+			for(int j = i; j < d; j++)
+			{
+				x[j] = x[j+1];
+			}
+			return true;
+			d--;
+		}
+		else
+		return false;
+	}
 	
 }
 
@@ -78,7 +91,7 @@ int main(int argc, char** argv) {
 				aggiungi(c,supermercato,d);
 				break;
 				
-			case 2:
+			case 2:	
 			 	
 			    visualizza(supermercato,d);
 			    break;
@@ -90,8 +103,9 @@ int main(int argc, char** argv) {
 			    break;
 			    
 			case 4:
-			 	
-			 //	cancella();
+			 	cout<<"nome del prodotto da cancellare: ";
+			 	cin>>al;
+				cancella(al,supermercato,d);
 			    break;
 			    
 			case 5:
