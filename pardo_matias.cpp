@@ -10,7 +10,7 @@ using namespace std;
 		float prezzo;
 		string categoria;
 	};
-	
+	 
 void sort(prodotto x[],int d)
 {
 	prodotto primo;
